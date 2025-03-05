@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Tortillería El Buen Sabor</title>
+  <!-- Bootstrap CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+  <style>
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background-color: #ffffff;
+      color: #fff;
+      padding-top: 60px;
+    }
+
+    nav {
+      background-color: #121212;
+      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.5);
+    }
+
+    nav .navbar-nav .nav-link {
+      color: #fff;
+      font-weight: 700;
+      font-size: 16px;
+      transition: color 0.25s;
+    }
+
+    nav .navbar-nav .nav-link:hover {
+      text-shadow: 0 0 30px #ff151580, 0 0 40px rgba(255, 17, 17, 0.5);
+    }
+
+    /* Estilo cuando el enlace está activo (seleccionado) */
+    nav .navbar-nav .nav-link.active {
+      color: #e20c0c !important; /* Cambiar el color a rojo */
+    }
+
+    .welcome-message {
+      background-color: #ffffff;
+      color: #000;
+      padding: 20px;
+      text-align: center;
+      font-size: 24px;
+      font-weight: bold;
+      position: fixed;
+      top: 20%;
+      left: 50%;
+      transform: translateX(-50%);
+      z-index: 1000;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5);
+    }
+  </style>
+</head>
+<body>
+  <div class="welcome-message">
+    <p>¡Bienvenidos a la Tortillería El Buen Sabor!</p>
+  </div>
+
+  <div class="wrapper">
+    <canvas id="bg-animation"></canvas>
+
+    <nav class="navbar navbar-expand-lg navbar-dark fixed-top">
+      <div class="container">
+        <a class="navbar-brand" href="menu.html">Tortillería El Buen Sabor</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+          <ul class="navbar-nav ms-auto">
+            <li class="nav-item">
+              <a class="nav-link" href="proveedores.html">Provedores</a>
+            </li>
+        
+            <li class="nav-item">
+              <a class="nav-link" href="../index.html"><i class="bi bi-box-arrow-in-right"></i> Login</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+  </div> <!-- Cierre del div.wrapper -->
+ 
+
+  
+  <script>
+    document.addEventListener("DOMContentLoaded", function() {
+      var currentLocation = window.location.href;
+      var links = document.querySelectorAll('nav .navbar-nav .nav-link');
+      
+      links.forEach(function(link) {
+        if (link.href === currentLocation) {
+          link.classList.add('active');
+        }
+      });
+    });
+  </script>
+  
+  <!-- JavaScript y otros recursos -->
+  <script type='text/javascript' src='//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js?ver=1.9.1'></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/1.19.0/TweenLite.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/1.19.0/easing/EasePack.min.js"></script>
+  <script type='text/javascript' src='resources/scripts/bg-animation.js'></script>
+  <script src="../js/fondo.js"></script>
+  <script src="../js/fondo.js"></script>
+  <!-- Bootstrap JS -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

@@ -1,0 +1,36 @@
+.wrapper {
+    display: block;
+    position: absolute;
+    width: 100vw;
+    height: 100vh;
+    z-index: 2;
+  }
+  p {
+    display: block;
+    position: relative;
+    float: left;
+    font-family: 'Roboto', sans-serif;
+    font-weight: bold;
+    font-size: 1.2em;
+    background-color: rgba(0,0,0,0.8);
+    color: #FFFFFF;
+    padding: 20px;
+    line-height: 1.6em;
+  }
+  a, a:visited, a:focus {
+    text-decoration: none;
+    color: #FFFFFF;
+  }
+  .videoWrapper {
+    display: block;
+    float: left;
+    margin-top: 30px;
+  }
+  
+  #bg-animation {
+    display: block;
+    position: absolute;
+    width: 100vw;
+    height: 100vh;
+    z-index: -1;
+  }

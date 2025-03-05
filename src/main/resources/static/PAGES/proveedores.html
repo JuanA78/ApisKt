@@ -1,0 +1,354 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gestión de Usuarios</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body>
+    <div class="container mt-5">
+        <h2>Lista de Usuarios</h2>
+        <table class="table table-striped" id="userTable">
+            <thead>
+                <tr>
+                    <th>Nombre Empresa</th>
+                    <th>Teléfono</th>
+                    <th>Banco</th>
+                    <th>Cuenta Bancaria</th>
+                    <th>Clave Interbancaria</th>
+                    <th>Acciones</th>
+                </tr>
+            </thead>
+            <tbody>
+                <!-- Aquí se mostrarán los usuarios -->
+            </tbody>
+        </table>
+
+        <button class="btn btn-primary mb-3" data-bs-toggle="modal" data-bs-target="#createUserModal">Crear Nuevo Usuario</button>
+
+        <!-- Modal para Crear Usuario -->
+        <div class="modal fade" id="createUserModal" tabindex="-1" aria-labelledby="createUserModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="createUserModalLabel">Crear Usuario</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <form id="createUserForm">
+                            <div class="row">
+                                <!-- Columna 1 -->
+                                <div class="col-md-6 mb-3">
+                                    <label for="nombreEmpresa" class="form-label">Nombre de la Empresa</label>
+                                    <input type="text" class="form-control" id="nombreEmpresa" required>
+                                </div>
+                                <div class="col-md-6 mb-3">
+                                    <label for="telefono" class="form-label">Teléfono</label>
+                                    <input type="text" class="form-control" id="telefono" required>
+                                </div>
+                                <div class="col-md-6 mb-3">
+                                    <label for="banco" class="form-label">Banco</label>
+                                    <input type="text" class="form-control" id="banco" required>
+                                </div>
+                                <div class="col-md-6 mb-3">
+                                    <label for="cuentaBancaria" class="form-label">Cuenta Bancaria</label>
+                                    <input type="text" class="form-control" id="cuentaBancaria" required>
+                                </div>
+                                <div class="col-md-6 mb-3">
+                                    <label for="claveInterbancaria" class="form-label">Clave Interbancaria</label>
+                                    <input type="text" class="form-control" id="claveInterbancaria" required>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <!-- Columna 2 -->
+                                <div class="col-md-6 mb-3">
+                                    <label for="razonSocial" class="form-label">Razón Social</label>
+                                    <input type="text" class="form-control" id="razonSocial">
+                                </div>
+                                <div class="col-md-6 mb-3">
+                                    <label for="rfc" class="form-label">RFC</label>
+                                    <input type="text" class="form-control" id="rfc">
+                                </div>
+                                <div class="col-md-6 mb-3">
+                                    <label for="correoElectronico" class="form-label">Correo Electrónico</label>
+                                    <input type="email" class="form-control" id="correoElectronico">
+                                </div>
+                                <div class="col-md-6 mb-3">
+                                    <label for="cp" class="form-label">Código Postal</label>
+                                    <input type="text" class="form-control" id="cp">
+                                </div>
+                                <div class="col-md-6 mb-3">
+                                    <label for="estado" class="form-label">Estado</label>
+                                    <input type="text" class="form-control" id="estado">
+                                </div>
+                                <div class="col-md-6 mb-3">
+                                    <label for="colonia" class="form-label">Colonia</label>
+                                    <input type="text" class="form-control" id="colonia">
+                                </div>
+                                <div class="col-md-6 mb-3">
+                                    <label for="calle" class="form-label">Calle</label>
+                                    <input type="text" class="form-control" id="calle">
+                                </div>
+                            </div>
+                            <button type="submit" class="btn btn-primary">Crear Usuario</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Modal para Editar Usuario -->
+        <div class="modal fade" id="editUserModal" tabindex="-1" aria-labelledby="editUserModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="editUserModalLabel">Editar Usuario</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <form id="editUserForm">
+                            <div class="row">
+                                <div class="col-md-6 mb-3">
+                                    <label for="editNombreEmpresa" class="form-label">Nombre de la Empresa</label>
+                                    <input type="text" class="form-control" id="editNombreEmpresa" required>
+                                </div>
+                                <div class="col-md-6 mb-3">
+                                    <label for="editTelefono" class="form-label">Teléfono</label>
+                                    <input type="text" class="form-control" id="editTelefono" required>
+                                </div>
+                                <div class="col-md-6 mb-3">
+                                    <label for="editBanco" class="form-label">Banco</label>
+                                    <input type="text" class="form-control" id="editBanco" required>
+                                </div>
+                                <div class="col-md-6 mb-3">
+                                    <label for="editCuentaBancaria" class="form-label">Cuenta Bancaria</label>
+                                    <input type="text" class="form-control" id="editCuentaBancaria" required>
+                                </div>
+                                <div class="col-md-6 mb-3">
+                                    <label for="editClaveInterbancaria" class="form-label">Clave Interbancaria</label>
+                                    <input type="text" class="form-control" id="editClaveInterbancaria" required>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-6 mb-3">
+                                    <label for="editRazonSocial" class="form-label">Razón Social</label>
+                                    <input type="text" class="form-control" id="editRazonSocial">
+                                </div>
+                                <div class="col-md-6 mb-3">
+                                    <label for="editRfc" class="form-label">RFC</label>
+                                    <input type="text" class="form-control" id="editRfc">
+                                </div>
+                                <div class="col-md-6 mb-3">
+                                    <label for="editCorreoElectronico" class="form-label">Correo Electrónico</label>
+                                    <input type="email" class="form-control" id="editCorreoElectronico">
+                                </div>
+                                <div class="col-md-6 mb-3">
+                                    <label for="editCp" class="form-label">Código Postal</label>
+                                    <input type="text" class="form-control" id="editCp">
+                                </div>
+                                <div class="col-md-6 mb-3">
+                                    <label for="editEstado" class="form-label">Estado</label>
+                                    <input type="text" class="form-control" id="editEstado">
+                                </div>
+                                <div class="col-md-6 mb-3">
+                                    <label for="editColonia" class="form-label">Colonia</label>
+                                    <input type="text" class="form-control" id="editColonia">
+                                </div>
+                                <div class="col-md-6 mb-3">
+                                    <label for="editCalle" class="form-label">Calle</label>
+                                    <input type="text" class="form-control" id="editCalle">
+                                </div>
+                            </div>
+                            <button type="submit" class="btn btn-primary">Guardar Cambios</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <script>
+     // URL de tu API
+const apiUrl = 'http://localhost:8080/users';
+
+// Función para cargar los usuarios
+async function loadUsers() {
+    const response = await fetch(apiUrl);
+    const users = await response.json();
+
+    const tableBody = document.querySelector("#userTable tbody");
+    tableBody.innerHTML = ""; // Limpiar la tabla
+
+    users.forEach(user => {
+        const row = document.createElement("tr");
+
+        row.innerHTML = `
+            <td>${user.nombreEmpresa}</td>
+            <td>${user.telefono}</td>
+            <td>${user.banco}</td>
+            <td>${user.cuentaBancaria}</td>
+            <td>${user.claveInterbancaria}</td>
+            <td>
+                <button class="btn btn-info btn-sm" onclick="toggleDetails('${user.id}')">Ver Detalles</button>
+                <button class="btn btn-warning btn-sm" onclick="editUser('${user.id}')">Editar</button>
+                <button class="btn btn-danger btn-sm" onclick="deleteUser('${user.id}')">Eliminar</button>
+            </td>
+        `;
+        tableBody.appendChild(row);
+
+        // Crear una fila extra para mostrar detalles
+        const detailsRow = document.createElement("tr");
+        detailsRow.classList.add("details-row");
+        detailsRow.style.display = "none"; // Ocultamos la fila de detalles inicialmente
+
+        detailsRow.innerHTML = `
+            <td colspan="6">
+                <strong>Razón Social:</strong> ${user.razonSocial} <br>
+                <strong>RFC:</strong> ${user.rfc} <br>
+                <strong>Correo Electrónico:</strong> ${user.correoElectronico} <br>
+                <strong>CP:</strong> ${user.cp} <br>
+                <strong>Estado:</strong> ${user.estado} <br>
+                <strong>Colonia:</strong> ${user.colonia} <br>
+                <strong>Calle:</strong> ${user.calle}
+            </td>
+        `;
+        tableBody.appendChild(detailsRow);
+    });
+}
+
+// Función para mostrar/ocultar detalles del usuario
+function toggleDetails(userId) {
+    const detailsRows = document.querySelectorAll(".details-row");
+
+    // Encontrar la fila de detalles correspondiente al usuario
+    detailsRows.forEach(row => {
+        // Comparamos el ID del usuario con un atributo data-id en la fila
+        const rowUserId = row.previousElementSibling.cells[5].querySelector('button').getAttribute('onclick').split("'")[1];
+
+        // Si el ID del usuario coincide con el que estamos buscando, togglear la visibilidad
+        if (rowUserId === userId) {
+            row.style.display = (row.style.display === "none") ? "table-row" : "none";
+        }
+    });
+}
+
+// Función para eliminar usuario
+async function deleteUser(userId) {
+    const response = await fetch(`${apiUrl}/${userId}`, { method: 'DELETE' });
+    if (response.ok) {
+        alert('Usuario eliminado');
+        loadUsers(); // Recargar la lista de usuarios
+    } else {
+        alert('Error al eliminar el usuario');
+    }
+}
+
+// Función para editar usuario
+async function editUser(userId) {
+    const response = await fetch(`${apiUrl}/${userId}`);
+    const user = await response.json();
+
+    // Rellenar el formulario de edición con los datos actuales del usuario
+    document.getElementById('editNombreEmpresa').value = user.nombreEmpresa;
+    document.getElementById('editTelefono').value = user.telefono;
+    document.getElementById('editBanco').value = user.banco;
+    document.getElementById('editCuentaBancaria').value = user.cuentaBancaria;
+    document.getElementById('editClaveInterbancaria').value = user.claveInterbancaria;
+    document.getElementById('editRazonSocial').value = user.razonSocial;
+    document.getElementById('editRfc').value = user.rfc;
+    document.getElementById('editCorreoElectronico').value = user.correoElectronico;
+    document.getElementById('editCp').value = user.cp;
+    document.getElementById('editEstado').value = user.estado;
+    document.getElementById('editColonia').value = user.colonia;
+    document.getElementById('editCalle').value = user.calle;
+
+    // Establecer el ID del usuario en un atributo data-id para usarlo más tarde
+    document.getElementById('editUserForm').dataset.userId = user.id;
+
+    // Usamos el API nativo de Bootstrap para mostrar el modal
+    const modal = new bootstrap.Modal(document.getElementById('editUserModal'));
+    modal.show();
+}
+
+// Evento para guardar los cambios de edición
+document.getElementById('editUserForm').addEventListener('submit', async (e) => {
+    e.preventDefault();
+
+    const userId = document.getElementById('editUserForm').dataset.userId; // Obtenemos el ID desde el dataset
+
+    const user = {
+        nombreEmpresa: document.getElementById('editNombreEmpresa').value,
+        telefono: document.getElementById('editTelefono').value,
+        banco: document.getElementById('editBanco').value,
+        cuentaBancaria: document.getElementById('editCuentaBancaria').value,
+        claveInterbancaria: document.getElementById('editClaveInterbancaria').value,
+        razonSocial: document.getElementById('editRazonSocial').value,
+        rfc: document.getElementById('editRfc').value,
+        correoElectronico: document.getElementById('editCorreoElectronico').value,
+        cp: document.getElementById('editCp').value,
+        estado: document.getElementById('editEstado').value,
+        colonia: document.getElementById('editColonia').value,
+        calle: document.getElementById('editCalle').value
+    };
+
+    const response = await fetch(`${apiUrl}/${userId}`, {
+        method: 'PUT',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(user),
+    });
+
+    if (response.ok) {
+        alert('Usuario actualizado');
+        loadUsers(); // Recargar la lista de usuarios
+        const modal = bootstrap.Modal.getInstance(document.getElementById('editUserModal'));
+        modal.hide(); // Cerrar el modal de edición
+    } else {
+        alert('Error al actualizar el usuario');
+    }
+});
+
+// Función para crear un nuevo usuario
+document.getElementById('createUserForm').addEventListener('submit', async (e) => {
+    e.preventDefault();
+
+    const user = {
+        nombreEmpresa: document.getElementById('nombreEmpresa').value,
+        telefono: document.getElementById('telefono').value,
+        banco: document.getElementById('banco').value,
+        cuentaBancaria: document.getElementById('cuentaBancaria').value,
+        claveInterbancaria: document.getElementById('claveInterbancaria').value,
+        razonSocial: document.getElementById('razonSocial').value,
+        rfc: document.getElementById('rfc').value,
+        correoElectronico: document.getElementById('correoElectronico').value,
+        cp: document.getElementById('cp').value,
+        estado: document.getElementById('estado').value,
+        colonia: document.getElementById('colonia').value,
+        calle: document.getElementById('calle').value
+    };
+
+    const response = await fetch(apiUrl, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(user),
+    });
+
+    if (response.ok) {
+        alert('Usuario creado');
+        loadUsers(); // Recargar la lista de usuarios
+        const modal = bootstrap.Modal.getInstance(document.getElementById('createUserModal'));
+        modal.hide(); // Cerrar el modal de creación
+    } else {
+        alert('Error al crear el usuario');
+    }
+});
+
+// Cargar los usuarios al cargar la página
+loadUsers();
+    </script>
+    
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
