@@ -13,8 +13,11 @@ RUN chmod +x gradlew
 # Instalar las dependencias de Gradle y compilar el proyecto
 RUN ./gradlew clean build -x check -x test
 
-# Exponer el puerto en el que Spring Boot correrá (por defecto es 8080)
+# Mover el JAR generado a una ubicación estándar
+RUN mv build/libs/*.jar app.jar
+
+# Exponer el puerto en el que Spring Boot correrá
 EXPOSE 8080
 
-# Ejecutar la aplicación de Spring Boot con el comando bootRun de Gradle
-CMD ["./gradlew", "bootRun"]
+# Ejecutar la aplicación usando el JAR, tomando el puerto de Railway
+CMD ["java", "-jar", "app.jar"]
